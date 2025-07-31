@@ -1,36 +1,169 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Decentralized Digital Justice Platform (DDJB)
 
-## Getting Started
+## 🌐 Vision
+A decentralized, transparent, and manipulation-resistant system for resolving disputes through anonymous arbitration, enforced by a public, verifiable reputation market. The goal is to eliminate central authority abuse in justice services by creating market-driven, cryptographically secure accountability.
 
-First, run the development server:
+## 🔍 Features
+- **Anonymous Arbitration**: Zero-knowledge proof-based identity system for privacy-preserving dispute resolution
+- **Reputation-Based Marketplace**: Dynamic scoring system that rewards honest arbitrators and penalizes misconduct
+- **Cryptographic Evidence**: Immutable case handling with verifiable proof and audit trails
+- **Decentralized Governance**: Community-driven protocol upgrades and parameter adjustments
+- **Multi-Chain Support**: Built for Polygon with extensibility to other EVM networks
 
+## 🏗️ Architecture
+
+### Smart Contracts
+- **DecentralizedJusticeCore**: Main contract handling case lifecycle and arbitrator management
+- **IArbitrator**: Interface for arbitrator registration and reputation tracking
+- **ICase**: Interface for dispute case management and evidence handling
+- **IReputationToken**: Interface for reputation scoring and token rewards
+
+### Frontend
+- **Next.js 15**: React-based web application with TypeScript
+- **Tailwind CSS**: Responsive UI components and styling
+- **Lucide React**: Icon library for consistent design
+- **Web3 Integration**: Ethereum wallet connectivity and transaction handling
+
+### Blockchain Layer
+- **Hardhat**: Development environment for smart contract testing and deployment
+- **OpenZeppelin**: Security-audited contract libraries
+- **Polygon Network**: Layer 2 scaling solution for reduced gas costs
+- **IPFS**: Decentralized storage for encrypted evidence and case data
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ and npm
+- Git
+- MetaMask or compatible Web3 wallet
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd ddjb
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+# Edit .env.local with your configuration
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Start the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+5. In a separate terminal, start the local blockchain:
+```bash
+npx hardhat node
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Deploy contracts to local network:
+```bash
+npx hardhat run scripts/deploy.ts --network localhost
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📋 Available Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Frontend Development
+- `npm run dev` - Start development server
+- `npm run build` - Build production application
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
-## Deploy on Vercel
+### Blockchain Development
+- `npx hardhat compile` - Compile smart contracts
+- `npx hardhat test` - Run contract tests
+- `npx hardhat node` - Start local blockchain
+- `npx hardhat run scripts/deploy.ts` - Deploy contracts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧪 Testing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run the smart contract test suite:
+```bash
+npx hardhat test
+```
+
+Run frontend tests:
+```bash
+npm run test
+```
+
+## 🌍 Deployment
+
+### Testnet Deployment (Mumbai)
+1. Configure Mumbai network in `hardhat.config.ts`
+2. Fund your wallet with test MATIC
+3. Deploy contracts:
+```bash
+npx hardhat run scripts/deploy.ts --network mumbai
+```
+
+### Mainnet Deployment (Polygon)
+1. Configure Polygon network in `hardhat.config.ts`
+2. Fund your wallet with MATIC
+3. Deploy contracts:
+```bash
+npx hardhat run scripts/deploy.ts --network polygon
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+- `POLYGON_RPC_URL`: Polygon network RPC endpoint
+- `MUMBAI_RPC_URL`: Mumbai testnet RPC endpoint
+- `PRIVATE_KEY`: Deployment wallet private key
+- `POLYGONSCAN_API_KEY`: PolygonScan API key for verification
+- `NEXT_PUBLIC_CONTRACT_ADDRESS`: Deployed contract address
+
+## 🛠️ Core Components
+
+### Case Lifecycle
+1. **Submission**: Claimant creates dispute with evidence commitment
+2. **Arbitrator Selection**: Parties choose from qualified arbitrators
+3. **Evidence Phase**: Encrypted evidence submission with cryptographic proofs
+4. **Deliberation**: Private arbitrator review and decision making
+5. **Resolution**: Public verdict with encrypted reasoning
+6. **Appeal**: Optional appeal process with different arbitrator panel
+
+### Reputation System
+- Dynamic scoring based on case outcomes and timeliness
+- Stake-weighted reputation for enhanced credibility
+- Time-decay mechanism to maintain recent performance focus
+- Slashing conditions for misconduct or poor performance
+
+## 🔐 Security Features
+
+- **Cryptographic Commitments**: Evidence integrity verification
+- **Zero-Knowledge Proofs**: Anonymous identity preservation
+- **Multi-Signature Escrow**: Secure fund management
+- **Time-Locked Withdrawals**: Protection against malicious arbitrator behavior
+- **Reputation Staking**: Economic incentives for honest behavior
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **OpenZeppelin**: Security-focused smart contract libraries
+- **Hardhat**: Ethereum development environment
+- **Next.js**: React framework for production applications
+- **Polygon**: Scaling solution for Ethereum
+- **IPFS**: Decentralized storage network

@@ -1,0 +1,81 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Development Server",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start Local Blockchain",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"hardhat",
+				"node"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Compile Smart Contracts",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"hardhat",
+				"compile"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Deploy Contracts to Local",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"hardhat",
+				"run",
+				"scripts/deploy.ts",
+				"--network",
+				"localhost"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": [],
+			"dependsOn": "Compile Smart Contracts"
+		},
+		{
+			"label": "Run Smart Contract Tests",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"hardhat",
+				"test"
+			],
+			"group": "test",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build Production",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}
