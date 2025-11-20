@@ -18,19 +18,31 @@ export const metadata: Metadata = {
   description: "Plataforma blockchain para justicia digital descentralizada con arbitraje anónimo basado en reputación",
 };
 
+import { LanguageProvider } from '@/lib/i18n/LanguageContext';
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <BlockchainProvider>
-          {children}
-        </BlockchainProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <BlockchainProvider>
+            <LanguageProvider>
+              {children}
+            </LanguageProvider>
+          </BlockchainProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

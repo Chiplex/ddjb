@@ -97,6 +97,39 @@ Run frontend tests:
 npm run test
 ```
 
+## 🛡️ Safe Testing Guide
+
+To test the application without risking real funds or compromising your main wallet, follow these recommended practices:
+
+### 1. Use Hardhat Local Network (Recommended)
+The safest way to test is using the local Hardhat network, which provides 20 pre-funded accounts with 10,000 ETH each.
+
+1. Start the local node:
+   ```bash
+   npx hardhat node
+   ```
+2. Import one of the generated private keys into MetaMask.
+   - **Network Name**: Localhost 8545
+   - **RPC URL**: `http://127.0.0.1:8545`
+   - **Chain ID**: `31337` (or `1337` if configured)
+   - **Currency Symbol**: ETH
+
+### 2. Use a Dedicated Development Browser Profile
+Create a separate Chrome/Firefox profile specifically for development.
+- Install MetaMask only in this profile.
+- **NEVER** import your mainnet seed phrase or private keys into this profile.
+- Only import test accounts (like the ones from Hardhat) or create new accounts for Testnets.
+
+### 3. Use Testnets (Mumbai/Amoy)
+If you need to test on a public network, use the Polygon Testnet (Amoy).
+- Get free test MATIC from a [faucet](https://faucet.polygon.technology/).
+- **DO NOT** send real funds to these addresses.
+
+### ⚠️ Security Warning
+- **NEVER** share your private keys or seed phrases.
+- **NEVER** commit `.env` files containing real keys to version control.
+- Always verify the network ID before confirming transactions.
+
 ## 🌍 Deployment
 
 ### Testnet Deployment (Mumbai)
