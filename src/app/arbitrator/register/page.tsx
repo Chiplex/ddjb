@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { TopBar } from '@/components/TopBar';
 
 export default function ArbitratorRegistrationPage() {
     const router = useRouter();
@@ -25,18 +26,20 @@ export default function ArbitratorRegistrationPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 p-6">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6 transition-colors duration-200">
             <div className="max-w-3xl mx-auto">
-                <button
-                    onClick={() => router.back()}
-                    className="flex items-center text-gray-600 hover:text-gray-900 mb-6"
-                >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    {t.arbitrator.backToDashboard}
-                </button>
+                <TopBar>
+                    <button
+                        onClick={() => router.back()}
+                        className="flex items-center text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 mb-6"
+                    >
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        {t.arbitrator.backToDashboard}
+                    </button>
+                </TopBar>
 
-                <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
-                    <div className="bg-blue-600 p-8 text-white">
+                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 overflow-hidden">
+                    <div className="bg-blue-600 dark:bg-blue-700 p-8 text-white">
                         <div className="flex items-center mb-4">
                             <Shield className="w-8 h-8 mr-3" />
                             <h1 className="text-2xl font-bold">{t.arbitrator.title}</h1>
@@ -50,29 +53,29 @@ export default function ArbitratorRegistrationPage() {
                         {step === 1 ? (
                             <div className="space-y-8">
                                 <div>
-                                    <h2 className="text-lg font-semibold text-gray-900 mb-4">{t.arbitrator.requirements}</h2>
+                                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t.arbitrator.requirements}</h2>
                                     <ul className="space-y-3">
                                         <li className="flex items-start">
                                             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
-                                            <span className="text-gray-600">{t.arbitrator.req1}</span>
+                                            <span className="text-gray-600 dark:text-gray-300">{t.arbitrator.req1}</span>
                                         </li>
                                         <li className="flex items-start">
                                             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
-                                            <span className="text-gray-600">{t.arbitrator.req2}</span>
+                                            <span className="text-gray-600 dark:text-gray-300">{t.arbitrator.req2}</span>
                                         </li>
                                         <li className="flex items-start">
                                             <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
-                                            <span className="text-gray-600">{t.arbitrator.req3}</span>
+                                            <span className="text-gray-600 dark:text-gray-300">{t.arbitrator.req3}</span>
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
                                     <div className="flex items-start">
                                         <AlertTriangle className="w-5 h-5 text-yellow-600 mr-3 mt-0.5" />
                                         <div>
-                                            <h3 className="text-sm font-medium text-yellow-800 mb-1">{t.arbitrator.terms}</h3>
-                                            <ul className="text-sm text-yellow-700 list-disc list-inside space-y-1">
+                                            <h3 className="text-sm font-medium text-yellow-800 dark:text-yellow-400 mb-1">{t.arbitrator.terms}</h3>
+                                            <ul className="text-sm text-yellow-700 dark:text-yellow-500 list-disc list-inside space-y-1">
                                                 <li>{t.arbitrator.term1}</li>
                                                 <li>{t.arbitrator.term2}</li>
                                                 <li>{t.arbitrator.term3}</li>
@@ -89,7 +92,7 @@ export default function ArbitratorRegistrationPage() {
                                         type="checkbox"
                                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                                     />
-                                    <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
+                                    <label htmlFor="terms" className="ml-2 block text-sm text-gray-900 dark:text-gray-200">
                                         {t.arbitrator.agreeTerms}
                                     </label>
                                 </div>
@@ -107,13 +110,13 @@ export default function ArbitratorRegistrationPage() {
                                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <CheckCircle className="w-8 h-8 text-green-600" />
                                 </div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-2">{t.arbitrator.successTitle}</h2>
-                                <p className="text-gray-600 mb-8">
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{t.arbitrator.successTitle}</h2>
+                                <p className="text-gray-600 dark:text-gray-300 mb-8">
                                     {t.arbitrator.successMessage}
                                 </p>
                                 <button
                                     onClick={() => router.push('/')}
-                                    className="px-6 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                                    className="px-6 py-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                                 >
                                     {t.arbitrator.returnDashboard}
                                 </button>

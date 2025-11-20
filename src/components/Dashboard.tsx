@@ -5,8 +5,7 @@ import React from 'react';
 import { Scale, Shield, Users, FileText, TrendingUp, Loader, AlertCircle } from 'lucide-react';
 import { useBlockchain } from '@/lib/blockchain/BlockchainProvider';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+import { TopBar } from '@/components/TopBar';
 
 interface DashboardProps {
   userAddress?: string;
@@ -59,7 +58,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userAddress, isArbitrator = false
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-950 p-6 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8 flex justify-between items-start">
+        <TopBar>
           <div>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
               {t.title}
@@ -82,11 +81,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userAddress, isArbitrator = false
               </div>
             )}
           </div>
-          <div className="flex items-center gap-3">
-            <ThemeSwitcher />
-            <LanguageSwitcher />
-          </div>
-        </div>
+        </TopBar>
 
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

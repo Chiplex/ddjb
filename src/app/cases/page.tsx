@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Search, Filter } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { TopBar } from '@/components/TopBar';
 
 export default function BrowseCasesPage() {
     const router = useRouter();
@@ -38,21 +39,24 @@ export default function BrowseCasesPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50 p-6">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6 transition-colors duration-200">
             <div className="max-w-7xl mx-auto">
-                <button
-                    onClick={() => router.back()}
-                    className="flex items-center text-gray-600 hover:text-gray-900 mb-6"
-                >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    {t.browseCases.backToDashboard}
-                </button>
+                <TopBar>
+                    <button
+                        onClick={() => router.back()}
+                        className="flex items-center text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 mb-6"
+                    >
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        {t.browseCases.backToDashboard}
+                    </button>
 
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900">{t.browseCases.title}</h1>
-                        <p className="text-gray-600 mt-1">{t.browseCases.subtitle}</p>
+                        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{t.browseCases.title}</h1>
+                        <p className="text-gray-600 dark:text-gray-300 mt-1">{t.browseCases.subtitle}</p>
                     </div>
+                </TopBar>
+
+                <div className="flex flex-col md:flex-row md:items-center justify-end mb-8">
 
                     <div className="mt-4 md:mt-0 flex space-x-4">
                         <div className="relative">
@@ -60,10 +64,10 @@ export default function BrowseCasesPage() {
                             <input
                                 type="text"
                                 placeholder={t.browseCases.searchPlaceholder}
-                                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             />
                         </div>
-                        <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                        <button className="flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
                             <Filter className="w-4 h-4 mr-2" />
                             {t.browseCases.filter}
                         </button>
@@ -72,27 +76,27 @@ export default function BrowseCasesPage() {
 
                 <div className="grid gap-6">
                     {cases.map((case_) => (
-                        <div key={case_.id} className="bg-white rounded-xl shadow-sm border p-6 hover:shadow-md transition-shadow">
+                        <div key={case_.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border dark:border-gray-700 p-6 hover:shadow-md transition-shadow">
                             <div className="flex flex-col md:flex-row justify-between">
                                 <div>
                                     <div className="flex items-center space-x-3 mb-2">
-                                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${case_.status === t.status.resolved ? 'bg-green-100 text-green-800' :
-                                                case_.status === t.status.evidencePhase ? 'bg-blue-100 text-blue-800' :
-                                                    'bg-yellow-100 text-yellow-800'
+                                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${case_.status === t.status.resolved ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' :
+                                            case_.status === t.status.evidencePhase ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' :
+                                                'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400'
                                             }`}>
                                             {case_.status}
                                         </span>
-                                        <span className="text-sm text-gray-500 font-mono">{case_.id}</span>
+                                        <span className="text-sm text-gray-500 dark:text-gray-400 font-mono">{case_.id}</span>
                                     </div>
-                                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{case_.title}</h3>
-                                    <div className="flex items-center space-x-6 text-sm text-gray-600">
-                                        <span>{t.amount}: <span className="font-medium text-gray-900">{case_.amount}</span></span>
+                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{case_.title}</h3>
+                                    <div className="flex items-center space-x-6 text-sm text-gray-600 dark:text-gray-400">
+                                        <span>{t.amount}: <span className="font-medium text-gray-900 dark:text-gray-200">{case_.amount}</span></span>
                                         <span>{t.due}: {case_.deadline}</span>
                                         <span>{t.arbitrators}: {case_.arbitrators}</span>
                                     </div>
                                 </div>
                                 <div className="mt-4 md:mt-0 flex items-center">
-                                    <button className="px-6 py-2 bg-white border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition-colors">
+                                    <button className="px-6 py-2 bg-white dark:bg-gray-800 border border-blue-600 dark:border-blue-500 text-blue-600 dark:text-blue-400 font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
                                         {t.browseCases.viewDetails}
                                     </button>
                                 </div>
